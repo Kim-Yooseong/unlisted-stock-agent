@@ -60,10 +60,18 @@ def load_csv(name: str) -> pd.DataFrame:
     return pd.read_csv(DATA_DIR / name)
 
 
+# 페이지 맨 아래에 작게 보여줄 참고 사이트
+REFERENCE_SITES = [
+    {"name": "THE VC", "url": "https://thevc.kr"},
+]
+
+
 def show_disclaimer():
-    """페이지 맨 아래 면책 문구"""
+    """페이지 맨 아래 면책 문구와 참고 사이트"""
     st.divider()
     st.caption("⚠️ " + DISCLAIMER)
+    links = " · ".join(f"[{s['name']} ↗]({s['url']})" for s in REFERENCE_SITES)
+    st.caption(f"참고 사이트: {links}")
 
 
 def sample_badge():
