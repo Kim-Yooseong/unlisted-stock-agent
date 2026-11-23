@@ -1,27 +1,26 @@
+"""
+비상장 주식투자 도움 에이전트 - 시작 파일
+Streamlit 실행: streamlit run app.py
+상단 메뉴(내비게이션)와 페이지 목록을 여기서 정합니다.
+"""
 import streamlit as st
 
-# 페이지 기본 설정
-st.set_page_config(page_title="비상장 주식투자 도움 에이전트", page_icon="📈")
-
-st.title("📈 비상장 주식투자 도움 에이전트")
-st.caption("개인투자자를 위한 비상장주식 정보 브리핑 서비스 (개발 중)")
-
-st.write(
-    "이 서비스는 증권사·회계법인 IPO 리포트와 금융감독원 전자공시(DART)처럼 "
-    "출처가 확실한 자료를 바탕으로 비상장 기업 정보를 요약해 드립니다."
+st.set_page_config(
+    page_title="비상장 주식투자 도움 에이전트",
+    page_icon="📈",
+    layout="wide",
 )
 
-st.subheader("준비 중인 기능")
-st.markdown(
-    """
-- 💬 AI 대화 에이전트
-- 🗂️ 주목 종목 카드
-- 📅 IPO 일정 표
-- ⚠️ 리스크 점검 (보호예수, 유상증자, 장외 사기 주의)
-"""
-)
+# 상단 메뉴에 보일 페이지 목록 (순서대로 표시됨)
+pages = [
+    st.Page("pages/home.py", title="홈", icon="🏠", default=True),
+    st.Page("pages/ai_briefing.py", title="AI 브리핑", icon="💬"),
+    st.Page("pages/stock_cards.py", title="종목 카드", icon="🗂️"),
+    st.Page("pages/market.py", title="시장 현황", icon="📊"),
+    st.Page("pages/ipo.py", title="IPO 일정", icon="📅"),
+    st.Page("pages/risk_tax.py", title="리스크·세금", icon="⚠️"),
+    st.Page("pages/guide.py", title="투자 가이드", icon="📚"),
+]
 
-st.info(
-    "본 서비스의 정보는 투자 판단을 위한 참고 자료이며, 특정 종목의 매수·매도를 권유하지 않습니다. "
-    "투자에 대한 책임은 투자자 본인에게 있습니다."
-)
+nav = st.navigation(pages, position="top")
+nav.run()
